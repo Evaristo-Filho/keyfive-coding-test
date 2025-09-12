@@ -16,7 +16,7 @@ public record struct Telemetry(ref readonly Guid DeviceId, ref readonly string N
 
     public void Display()
     {
-        Debug.WriteLine(this.ToString());
+       Console.WriteLine(this.ToString());
     }
 
     public void UpdateValue(double newValue)
