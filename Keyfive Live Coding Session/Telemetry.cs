@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Dynamic;
 using System.Formats.Tar;
 
@@ -8,26 +9,18 @@ using static KeyfiveLiveCodingSession.ITelemetry;
 
 // Implement the Telemetry class using the ITelemetry interface. For bonus points, use a record instead of a class.
 
-public record Telemetry : ITelemetry
+public record struct Telemetry(ref readonly Guid DeviceId, ref readonly string Name, double Value, ref readonly Units Unit) : ITelemetry
 {
-    public Telemetry(Guid DeviceId, string Name, double Value, Units Units) { }
-    public Guid DeviceId { get; }
-
-    public string Name { get; }
 
     public DateTime Timestamp { get { return DateTime.Now; } }
 
-    public double Value { get; set; }
-
-    public ITelemetry.Units Unit { get; }
-
     public void Display()
     {
-        Console.WriteLine(this.ToString());
+        Debug.WriteLine(this.ToString());
     }
 
     public void UpdateValue(double newValue)
     {
-       Value = newValue;
+        this.Value = newValue;
     }
 }
