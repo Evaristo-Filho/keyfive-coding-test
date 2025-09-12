@@ -1,5 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
+using System.Dynamic;
+using System.Formats.Tar;
 
 namespace KeyfiveLiveCodingSession;
 using static KeyfiveLiveCodingSession.ITelemetry;
@@ -8,24 +10,24 @@ using static KeyfiveLiveCodingSession.ITelemetry;
 
 public record Telemetry : ITelemetry
 {
-    public Telemetry(Guid deviceID, string name, double value, Units unit ) { }
-    public Guid DeviceId => throw new NotImplementedException();
+    public Telemetry(Guid DeviceId, string Name, double Value, Units Units) { }
+    public Guid DeviceId { get; }
 
-    public string Name => throw new NotImplementedException();
+    public string Name { get; }
 
-    public DateTime Timestamp => throw new NotImplementedException();
+    public DateTime Timestamp { get { return DateTime.Now; } }
 
-    public double Value => throw new NotImplementedException();
+    public double Value { get; set; }
 
-    public ITelemetry.Units Unit => throw new NotImplementedException();
+    public ITelemetry.Units Unit { get; }
 
     public void Display()
     {
-        throw new NotImplementedException();
+        Console.WriteLine(this.ToString());
     }
 
     public void UpdateValue(double newValue)
     {
-        throw new NotImplementedException();
+       Value = newValue;
     }
 }
