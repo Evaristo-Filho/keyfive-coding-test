@@ -8,6 +8,7 @@ public class TelemetryTests
     [Fact]
     public void Telemetry_UpdateValue_UpdatesValueAndTimestamp()
     {
+        
         // Arrange
         var telemetry = new Telemetry(Guid.NewGuid(), "Device1", 22.0, Units.Celsius);
         var oldTimestamp = telemetry.Timestamp;
