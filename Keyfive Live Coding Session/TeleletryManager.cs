@@ -35,16 +35,24 @@ namespace KeyfiveLiveCodingSession
 
         public double CalculateAverage(ITelemetry.Units? units = null, ITelemetry.Units convertedUnits = ITelemetry.Units.Celsius)
         {
-            var fValue = telemetries.Where(x => x.Unit == ITelemetry.Units.Fahrenheit).Average(x => x.Value);
-            var cValue = telemetries.Where(x => x.Unit == ITelemetry.Units.Celsius).Average(x => x.Value);
+            //Implemented after live code.
+            var fValue = telemetries.Where(x => x.Unit == ITelemetry.Units.Fahrenheit).Sum(x => x.Value);
+            var fCount = telemetries.Where(x => x.Unit == ITelemetry.Units.Fahrenheit).Count();
+
+            var cValue = telemetries.Where(x => x.Unit == ITelemetry.Units.Celsius).Sum(x => x.Value);
+            var cCount = telemetries.Where(x => x.Unit == ITelemetry.Units.Celsius).Count();
 
             if (convertedUnits == ITelemetry.Units.Fahrenheit)
             {
-                 var total = ((cValue *9/5)+32) * ((int) telemetries.Where(x=>x.Unit== ITelemetry.Units.Celsius).Count());
+                var t = (fValue +
+                        (cValue * 9 / 5) + (32 * cCount)) /
+                        (fCount + cCount);
+                                                
             }
-            else { 
-                
-                }
+            else
+            {
+
+            }
 
             return 0;
         }
